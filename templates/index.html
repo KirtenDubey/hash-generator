@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHA Hash Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FF8C00;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: none;
+        }
+        input[type="text"] {
+            width: 300px;
+        }
+        button {
+            background-color: #61dafb;
+            color: #282c34;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #21a1f1;
+        }
+        .output {
+            margin-top: 20px;
+            font-weight: bold;
+            word-wrap: break-word;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>SHA Hash Generator</h1>
+    <form method="POST">
+        <input type="text" name="text" placeholder="Enter text here" value="{{text}}" required>
+        <br>
+        <select name="hash_type" required>
+            <option value="both" {% if hash_type == 'both' %}selected{% endif %}>SHA-224 & SHA-256</option>
+            <option value="sha224" {% if hash_type == 'sha224' %}selected{% endif %}>SHA-224</option>
+            <option value="sha256" {% if hash_type == 'sha256' %}selected{% endif %}>SHA-256</option>
+        </select>
+        <br>
+        <button type="submit">Generate Hash</button>
+    </form>
+
+    <div class="output">
+        <div><strong>SHA-224:</strong></div>
+        <div>{{ sha224 if sha224 else "Hash not generated" }}</div>
+    </div>
+
+    <div class="output">
+        <div><strong>SHA-256:</strong></div>
+        <div>{{ sha256 if sha256 else "Hash not generated" }}</div>
+    </div>
+</body>
+</html>
